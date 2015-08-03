@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Customer_Bill">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Bill_ID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="c_Date"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <DateTimeConstraint
+            Precision="0"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Total"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money">
+        <EntityProperty.Attributes>
+          <Required />
+          <DecimalConstraint
+            Precision="19"
+            Scale="4" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Paid_amount"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money">
+        <EntityProperty.Attributes>
+          <Required />
+          <DecimalConstraint
+            Precision="19"
+            Scale="4" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Status"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Bill_Amount"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money?">
+        <EntityProperty.Attributes>
+          <DecimalConstraint
+            Precision="19"
+            Scale="4" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Paid_Date"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <DateTimeConstraint
+            Precision="0"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Date_to_pay"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <DateTimeConstraint
+            Precision="0"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Bill_Details"
+        Association="FK_Bill_Detail_Bill"
+        FromEnd="Customer_Bill"
+        ToEnd="Bill_Detail" />
+      <NavigationProperty
+        Name="Customer"
+        Association="FK_Customer_Bill"
+        FromEnd="Customer_Bill"
+        ToEnd="Customer" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Bill_Detail_Bill">
+    <AssociationEnd
+      Name="Customer_Bill"
+      EntityType="Customer_Bill">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Bill_Detail"
+      Multiplicity="Many"
+      EntityType="Bill_Detail" />
+  </Association>
+  <EntityContainer
+    Name="PMSData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Customer_Bills"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Customer_Bill" />
+    <AssociationSet
+      Name="FK_Bill_Detail_Bill"
+      Association="FK_Bill_Detail_Bill">
+      <AssociationSetEnd
+        Name="Customer_Bill"
+        EntitySet="Customer_Bills" />
+      <AssociationSetEnd
+        Name="Bill_Detail"
+        EntitySet="Bill_Details" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Customer_Bills_Single"
+      ReturnType="Customer_Bill">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Bill_ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Bill_ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Customer_Bills" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Bill_ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Bill_ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Customer_Bills_SingleOrDefault"
+      ReturnType="Customer_Bill">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Bill_ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Bill_ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Customer_Bills" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Bill_ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Bill_ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="PMSDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Customer_Bills">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Customer_Bill" />
+        <SsdlProperty
+          Name="Bill_ID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Customer_Bill/Properties[Bill_ID]" />
+        <SsdlProperty
+          Name="Date"
+          Nullable="False"
+          Type="date"
+          Property="Customer_Bill/Properties[c_Date]" />
+        <SsdlProperty
+          Name="Total"
+          Nullable="False"
+          Type="money"
+          Property="Customer_Bill/Properties[Total]" />
+        <SsdlProperty
+          Name="Paid_amount"
+          Nullable="False"
+          Type="money"
+          Property="Customer_Bill/Properties[Paid_amount]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Status"
+          Nullable="True"
+          Type="varchar"
+          Property="Customer_Bill/Properties[Status]" />
+        <SsdlProperty
+          Name="Bill_Amount"
+          Nullable="True"
+          Type="money"
+          Property="Customer_Bill/Properties[Bill_Amount]" />
+        <SsdlProperty
+          Name="Paid_Date"
+          Nullable="True"
+          Type="date"
+          Property="Customer_Bill/Properties[Paid_Date]" />
+        <SsdlProperty
+          Name="Date_to_pay"
+          Nullable="True"
+          Type="date"
+          Property="Customer_Bill/Properties[Date_to_pay]" />
+        <SsdlForeignKeyProperty
+          Name="Customer_ID"
+          Nullable="True"
+          Type="int"
+          PropertyName="Customer_ID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Bill_Detail_Bill">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Bill_Detail_Bill" />
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Bill_Detail_Bill]/Members[Customer_Bill]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Bill_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Bill_Detail_Bill]/Members[Bill_Detail]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Customer_Bill_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

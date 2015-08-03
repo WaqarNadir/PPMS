@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{581633EB-B896-402F-8E60-36F3DA191C85}") = "PPMS", "PPMS\PPMS.lsxtproj", "{EA2BE3AE-B977-4BB2-A330-EF7492FE8834}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMS.Server", "PPMS\PPMS.Server\PPMS.Server.csproj", "{D3B40AC5-F2BA-4763-BD92-868FFC58CA19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMS.DesktopClient", "PPMS\PPMS.DesktopClient\PPMS.DesktopClient.csproj", "{540F742E-16F7-4ADC-A980-DE33061970DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA2BE3AE-B977-4BB2-A330-EF7492FE8834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2BE3AE-B977-4BB2-A330-EF7492FE8834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2BE3AE-B977-4BB2-A330-EF7492FE8834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2BE3AE-B977-4BB2-A330-EF7492FE8834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B40AC5-F2BA-4763-BD92-868FFC58CA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B40AC5-F2BA-4763-BD92-868FFC58CA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B40AC5-F2BA-4763-BD92-868FFC58CA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B40AC5-F2BA-4763-BD92-868FFC58CA19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540F742E-16F7-4ADC-A980-DE33061970DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540F742E-16F7-4ADC-A980-DE33061970DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540F742E-16F7-4ADC-A980-DE33061970DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540F742E-16F7-4ADC-A980-DE33061970DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

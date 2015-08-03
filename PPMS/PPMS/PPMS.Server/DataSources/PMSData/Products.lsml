@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Product">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Product_ID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Product_Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Sales_Rate"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money">
+        <EntityProperty.Attributes>
+          <Required />
+          <DecimalConstraint
+            Precision="19"
+            Scale="4" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Stock_In_hand"
+        PropertyType=":Double">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Unit"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+          <SupportedValue
+            DisplayName="PCS"
+            Value="PCS" />
+          <SupportedValue
+            DisplayName="Litre"
+            Value="Litre" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Purchase_Date"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <DateTimeConstraint
+            Precision="0"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Remarks"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Bill_Details"
+        Association="FK_Bill_Detail_Product"
+        FromEnd="Product"
+        ToEnd="Bill_Detail" />
+      <NavigationProperty
+        Name="Category1"
+        Association="FK_Product_Category"
+        FromEnd="Product"
+        ToEnd="Category" />
+      <NavigationProperty
+        Name="Supplier"
+        Association="FK_Product_Supplier"
+        FromEnd="Product"
+        ToEnd="Supplier" />
+      <NavigationProperty
+        Name="Purchase_Details"
+        Association="FK_Purchase_Detail_Product"
+        FromEnd="Product"
+        ToEnd="Purchase_Detail" />
+      <NavigationProperty
+        Name="Sale_Details"
+        Association="FK_Sale_Detail_Product"
+        FromEnd="Product"
+        ToEnd="Sale_Detail" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Bill_Detail_Product">
+    <AssociationEnd
+      Name="Product"
+      EntityType="Product">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Bill_Detail"
+      Multiplicity="Many"
+      EntityType="Bill_Detail" />
+  </Association>
+  <Association
+    Name="FK_Purchase_Detail_Product">
+    <AssociationEnd
+      Name="Product"
+      EntityType="Product">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Purchase_Detail"
+      Multiplicity="Many"
+      EntityType="Purchase_Detail" />
+  </Association>
+  <Association
+    Name="FK_Sale_Detail_Product">
+    <AssociationEnd
+      Name="Product"
+      EntityType="Product">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Sale_Detail"
+      Multiplicity="Many"
+      EntityType="Sale_Detail" />
+  </Association>
+  <EntityContainer
+    Name="PMSData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Products"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Product" />
+    <AssociationSet
+      Name="FK_Bill_Detail_Product"
+      Association="FK_Bill_Detail_Product">
+      <AssociationSetEnd
+        Name="Product"
+        EntitySet="Products" />
+      <AssociationSetEnd
+        Name="Bill_Detail"
+        EntitySet="Bill_Details" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Purchase_Detail_Product"
+      Association="FK_Purchase_Detail_Product">
+      <AssociationSetEnd
+        Name="Product"
+        EntitySet="Products" />
+      <AssociationSetEnd
+        Name="Purchase_Detail"
+        EntitySet="Purchase_Details" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Sale_Detail_Product"
+      Association="FK_Sale_Detail_Product">
+      <AssociationSetEnd
+        Name="Product"
+        EntitySet="Products" />
+      <AssociationSetEnd
+        Name="Sale_Detail"
+        EntitySet="Sale_Details" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Products_Single"
+      ReturnType="Product">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Product_ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Product_ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Products" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Product_ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Product_ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Products_SingleOrDefault"
+      ReturnType="Product">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Product_ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Product_ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Products" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Product_ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Product_ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="PMSDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Products">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Product" />
+        <SsdlProperty
+          Name="Product_ID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Product/Properties[Product_ID]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Product_Name"
+          Nullable="False"
+          Type="varchar"
+          Property="Product/Properties[Product_Name]" />
+        <SsdlProperty
+          Name="Sales_Rate"
+          Nullable="False"
+          Type="money"
+          Property="Product/Properties[Sales_Rate]" />
+        <SsdlProperty
+          Name="Stock_In_hand"
+          Nullable="False"
+          Type="float"
+          Property="Product/Properties[Stock_In_hand]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Unit"
+          Nullable="False"
+          Type="varchar"
+          Property="Product/Properties[Unit]" />
+        <SsdlProperty
+          Name="Purchase_Date"
+          Nullable="False"
+          Type="date"
+          Property="Product/Properties[Purchase_Date]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Remarks"
+          Nullable="True"
+          Type="varchar"
+          Property="Product/Properties[Remarks]" />
+        <SsdlForeignKeyProperty
+          Name="Category"
+          Nullable="True"
+          Type="int"
+          PropertyName="Category" />
+        <SsdlForeignKeyProperty
+          Name="Supplier_ID"
+          Nullable="True"
+          Type="int"
+          PropertyName="Supplier_ID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Bill_Detail_Product">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Bill_Detail_Product" />
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Bill_Detail_Product]/Members[Product]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Bill_Detail_Product]/Members[Bill_Detail]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Purchase_Detail_Product">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Purchase_Detail_Product" />
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Purchase_Detail_Product]/Members[Product]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Purchase_Detail_Product]/Members[Purchase_Detail]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Sale_Detail_Product">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Sale_Detail_Product" />
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Sale_Detail_Product]/Members[Product]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PMSData/Members[FK_Sale_Detail_Product]/Members[Sale_Detail]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Product_ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>
