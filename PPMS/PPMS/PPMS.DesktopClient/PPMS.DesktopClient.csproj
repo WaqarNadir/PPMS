@@ -142,6 +142,16 @@
       <Private>True</Private>
       <ProjectCritical>True</ProjectCritical>
     </Reference>
+    <Reference Include="ShamrockTheme.Client">
+      <HintPath>..\_Pvt_Extensions\ShamrockTheme\Client\Reference\ShamrockTheme.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ShamrockTheme.Client.Design">
+      <HintPath>..\_Pvt_Extensions\ShamrockTheme\Client\DebugOnlyRef\ShamrockTheme.Client.Design.dll</HintPath>
+      <ExtensionReferenceType>DebugOnly</ExtensionReferenceType>
+    </Reference>
+    <Reference Include="ShamrockTheme.Common">
+      <HintPath>..\_Pvt_Extensions\ShamrockTheme\Client\Reference\ShamrockTheme.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <SpecificVersion>False</SpecificVersion>
       <ProjectCritical>True</ProjectCritical>
@@ -220,6 +230,7 @@
     <Reference Include="Microsoft.CSharp">
       <ProjectCritical>True</ProjectCritical>
     </Reference>
+    <Reference Include="System.Xml.Serialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ServiceMetadataReference Include="..\PPMS.Server\PPMS.Server.csproj">
@@ -227,6 +238,12 @@
     </ServiceMetadataReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PPMS.Server\DataSources\PMSData\Bill_Detail.lsml.cs">
+      <Link>UserCode\Shared\Bill_Detail.lsml.cs</Link>
+    </Compile>
+    <Compile Include="..\PPMS.Server\DataSources\PMSData\Customer_Bill.lsml.cs">
+      <Link>UserCode\Shared\Customer_Bill.lsml.cs</Link>
+    </Compile>
     <Compile Include="..\PPMS.Server\DataSources\PMSData\Machine.lsml.cs">
       <Link>UserCode\Shared\Machine.lsml.cs</Link>
     </Compile>
@@ -242,6 +259,9 @@
     </Compile>
     <Compile Include="Screens\CreateNewCustomer.lsml.cs">
       <DependentUpon>CreateNewCustomer.lsml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\CreateNewCustomer_Bill.lsml.cs">
+      <DependentUpon>CreateNewCustomer_Bill.lsml</DependentUpon>
     </Compile>
     <Compile Include="Screens\CreateNewMachine.lsml.cs">
       <DependentUpon>CreateNewMachine.lsml</DependentUpon>
@@ -311,6 +331,7 @@
     <LightSwitchModel Include="Properties\PMSData\Sale_Details.lsml" />
     <LightSwitchModel Include="Screens\VIEW_SaleDetail.lsml" />
     <LightSwitchModel Include="Properties\PMSData\Sales.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewCustomer_Bill.lsml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Logo %281%29.png" />

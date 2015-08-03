@@ -25,6 +25,11 @@
           <NotSearchable />
         </KeyProperty.Attributes>
       </KeyProperty>
+      <NavigationProperty
+        Name="Product"
+        Association="FK_Bill_Detail_Product"
+        FromEnd="Bill_Detail"
+        ToEnd="Product" />
       <EntityProperty
         Name="Quantity"
         PropertyType=":Double">
@@ -60,11 +65,6 @@
         Association="FK_Bill_Detail_Bill"
         FromEnd="Bill_Detail"
         ToEnd="Customer_Bill" />
-      <NavigationProperty
-        Name="Product"
-        Association="FK_Bill_Detail_Product"
-        FromEnd="Bill_Detail"
-        ToEnd="Product" />
     </EntityType.Properties>
   </EntityType>
   <EntityContainer

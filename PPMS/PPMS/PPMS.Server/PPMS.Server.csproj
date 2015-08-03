@@ -60,6 +60,12 @@
     <Reference Include="Microsoft.LightSwitch.Extensions.Server">
       <HintPath>..\_Pvt_Extensions\Microsoft.LightSwitch.Extensions\Server\Reference\Microsoft.LightSwitch.Extensions.Server.dll</HintPath>
     </Reference>
+    <Reference Include="ShamrockTheme.Common">
+      <HintPath>..\_Pvt_Extensions\ShamrockTheme\Server\Reference\ShamrockTheme.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ShamrockTheme.Server">
+      <HintPath>..\_Pvt_Extensions\ShamrockTheme\Server\Reference\ShamrockTheme.Server.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <ProjectCritical>True</ProjectCritical>
     </Reference>
@@ -191,6 +197,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\PMSData\Bill_Detail.lsml.cs">
+      <DependentUpon>Bill_Details.lsml</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\PMSData\Customer_Bill.lsml.cs">
+      <DependentUpon>Customer_Bills.lsml</DependentUpon>
+    </Compile>
     <Compile Include="DataSources\PMSData\Machine.lsml.cs">
       <DependentUpon>Machines.lsml</DependentUpon>
     </Compile>

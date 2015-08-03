@@ -24,5 +24,8 @@
     <ExtensionAssembly>Microsoft.LightSwitch.SdkProxy, Version=10.0.12.1, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
     <ExtensionAssembly>Microsoft.LightSwitch.Cosmopolitan.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
     <ExtensionAssembly>Microsoft.LightSwitch.Extensions.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
+    <ExtensionAssembly>ShamrockTheme.Client, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>ShamrockTheme.Common, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>System.Xml.Serialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
   </ExtensionAssemblies>
 </Configuration>

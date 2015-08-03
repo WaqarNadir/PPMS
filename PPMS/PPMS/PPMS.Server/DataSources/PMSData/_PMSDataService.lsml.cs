@@ -93,6 +93,33 @@ namespace LightSwitchApplication
         
         }
 
+        partial void Customer_Bills_Inserting(Customer_Bill entity)
+        {
+            var detail= from val in entity.Bill_Details
+                                 select val;
+            foreach (var value in detail)
+            {
+                entity.Bill_Amount += value.Item_Amount;
+            }
+
+            Customer_Bill customer_bill = (from value in this.DataWorkspace.PMSData.Customer_Bills
+                                where value.Customer.Customer_ID == entity.Customer.Customer_ID
+                                orderby value.Bill_ID descending
+                                select value ).FirstOrDefault();
+            if (customer_bill != null)
+            {
+                entity.Total = customer_bill.Total + (decimal)entity.Bill_Amount;
+                // adding current bill amount to previous total of customer 
+            }
+            else
+            {
+                entity.Total =  (decimal)entity.Bill_Amount;
+            }
+            entity.Customer.Amount_Remaining = entity.Total;    // ... copying total to customer 
+        }
+        
+
+
        
         
     }

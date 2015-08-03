@@ -121,6 +121,11 @@
       <Client>MICROSOFT.LIGHTSWITCH.EXTENSIONS.CLIENT;MICROSOFT.LIGHTSWITCH.EXTENSIONS.DESIGN.CLIENT</Client>
       <Server>MICROSOFT.LIGHTSWITCH.EXTENSIONS.SERVER</Server>
     </LightSwitchExtension>
+    <LightSwitchExtension Include="Extensions\ShamrockTheme.lspkg">
+      <ExtensionId>ShamrockTheme</ExtensionId>
+      <Client>SHAMROCKTHEME.CLIENT;SHAMROCKTHEME.COMMON;SYSTEM.XML.SERIALIZATION;SHAMROCKTHEME.CLIENT.DESIGN</Client>
+      <Server>SHAMROCKTHEME.COMMON;SHAMROCKTHEME.SERVER</Server>
+    </LightSwitchExtension>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\LightSwitch\$(LightSwitchVersion)\Microsoft.LightSwitch.targets" />
 </Project>
