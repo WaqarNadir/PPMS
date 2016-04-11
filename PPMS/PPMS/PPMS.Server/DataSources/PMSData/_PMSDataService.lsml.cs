@@ -55,6 +55,7 @@ namespace LightSwitchApplication
                 sd.Machine.Machine_Reading = sd.CLosing_sale;
             }
             calculateTotal(entity);
+           
 
         }
         Sale calculateTotal(Sale entity)
@@ -96,16 +97,13 @@ namespace LightSwitchApplication
         partial void Customer_Bills_Inserting(Customer_Bill entity)
         {
             var detail= from val in entity.Bill_Details
-                                 select val;
+                         select val;
             foreach (var value in detail)
             {
                 entity.Bill_Amount += value.Item_Amount;
             }
 
-            Customer_Bill customer_bill = (from value in this.DataWorkspace.PMSData.Customer_Bills
-                                where value.Customer.Customer_ID == entity.Customer.Customer_ID
-                                orderby value.Bill_ID descending
-                                select value ).FirstOrDefault();
+            Customer_Bill customer_bill = getLastCustomer(entity);
             if (customer_bill != null)
             {
                 entity.Total = customer_bill.Total + (decimal)entity.Bill_Amount;
@@ -116,6 +114,34 @@ namespace LightSwitchApplication
                 entity.Total =  (decimal)entity.Bill_Amount;
             }
             entity.Customer.Amount_Remaining = entity.Total;    // ... copying total to customer 
+        }
+
+        Customer_Bill getLastCustomer(Customer_Bill entity)
+        {
+            Customer_Bill customer_bill = (from value in this.DataWorkspace.PMSData.Customer_Bills
+                                           where value.Customer.Customer_ID == entity.Customer.Customer_ID
+                                           orderby value.Bill_ID descending
+                                           select value).FirstOrDefault();
+            return customer_bill;
+        }
+
+        partial void Customer_Bills_Updating(Customer_Bill entity)
+        {
+            if (entity.Paid_amount != 0)
+            {
+                Customer_Bill customer_bill = getLastCustomer(entity);
+                customer_bill.Total -= entity.Paid_amount;
+                customer_bill.Remarks = "Bill Date: " + String.Format("{0:MM/dd/yyyy}", entity.c_Date) +
+                                    " paid on " + String.Format("{0:MM/dd/yyyy}", entity.Paid_Date.Value.Date);
+                entity.Customer.Amount_Remaining = customer_bill.Total;
+            }
+            
+        }
+
+        partial void Sale_Details_Inserted(Sale_Detail entity)
+        {
+            entity.Product.Stock_In_hand -= entity.Quantity;
+            // subtracting the stock issued.
         }
         
 

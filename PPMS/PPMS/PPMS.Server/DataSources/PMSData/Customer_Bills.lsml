@@ -109,12 +109,11 @@
         ToEnd="Customer" />
       <EntityProperty
         Name="Remarks"
-        IsReadOnly="True"
-        PropertyType=":String">
+        PropertyType=":String?">
         <EntityProperty.Attributes>
-          <Computed />
-          <NotSearchable />
-          <NotSortable />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
         </EntityProperty.Attributes>
       </EntityProperty>
     </EntityType.Properties>
@@ -288,6 +287,12 @@
           Nullable="True"
           Type="date"
           Property="Customer_Bill/Properties[Date_to_pay]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Remarks"
+          Nullable="True"
+          Type="varchar"
+          Property="Customer_Bill/Properties[Remarks]" />
         <SsdlForeignKeyProperty
           Name="Customer_ID"
           Nullable="True"

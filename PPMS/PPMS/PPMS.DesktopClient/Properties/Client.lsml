@@ -64,6 +64,9 @@
     <ApplicationCommand
       Name="ScreenCommandShowCreateNewCustomer_Bill"
       Target="!module/Methods[ShowCreateNewCustomer_Bill]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCustomer_BillsListDetail"
+      Target="!module/Methods[ShowCustomer_BillsListDetail]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -100,6 +103,9 @@
       <ApplicationNavigationLink
         Name="CreateNewCustomer_Bill"
         Command="!module/Commands[ScreenCommandShowCreateNewCustomer_Bill]" />
+      <ApplicationNavigationLink
+        Name="Customer_BillsListDetail"
+        Command="!module/Commands[ScreenCommandShowCustomer_BillsListDetail]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

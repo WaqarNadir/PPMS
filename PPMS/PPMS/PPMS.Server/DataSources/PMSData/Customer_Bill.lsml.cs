@@ -11,5 +11,7 @@ namespace LightSwitchApplication
         {
             Total = Customer.Amount_Remaining;
         }
+
+        
     }
 }
